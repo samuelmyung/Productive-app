@@ -3,6 +3,8 @@ import { v4 as uuid } from "uuid";
 
 import TopTodo from "./TopTodo";
 import EditableTodoList from "./EditableTodoList";
+import Todo from "./Todo";
+import TodoForm from "./TodoForm";
 
 /** App for managing a todo list.
  *
@@ -15,7 +17,7 @@ import EditableTodoList from "./EditableTodoList";
  * App -> TodoApp -> { TodoForm, EditableTodoList }
  */
 
-function TodoApp(initialTodos) {
+function TodoApp({initialTodos}) {
   const [todos, setTodos] = useState(initialTodos);
 
 
@@ -34,25 +36,30 @@ function TodoApp(initialTodos) {
     setTodos(todos => todos.filter(todo => todo.id !== id));
   }
 
+  function renderTodoList() {
+    return (todos.length === 0)?
+    <span className="text-muted">You have no todos.</span> :
+    <EditableTodoList update={update} remove={remove} todos={todos}/>;
+  }
+
   return (
       <main className="TodoApp">
         <div className="row">
 
           <div className="col-md-6">
-            <EditableTodoList /> OR
-            <span className="text-muted">You have no todos.</span>
+            {renderTodoList()}
           </div>
 
           <div className="col-md-6">
             (if no top todo, omit this whole section)
             <section className="mb-4">
               <h3>Top Todo</h3>
-              <TopTodo />
+              <TopTodo todos={todos} />
             </section>
 
             <section>
               <h3 className="mb-3">Add Nü</h3>
-              FIXME
+              <TodoForm handleSave={create}/>
             </section>
           </div>
 
