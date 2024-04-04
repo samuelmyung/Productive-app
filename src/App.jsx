@@ -8,7 +8,7 @@ import "./App.css";
  *
  * App -> TodoApp
  **/
-
+//TODO: Make initial todos global constant
 function App() {
   return (
       <main className="App">
