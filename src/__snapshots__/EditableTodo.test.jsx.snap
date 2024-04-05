@@ -1,0 +1,48 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`matches snapshot with initial todos 1`] = `
+<div>
+  <div
+    class="EditableTodo"
+  >
+    <div
+      class="mb-3"
+    >
+      <div
+        class="float-end text-sm-end"
+      >
+        <button
+          class="EditableTodo-toggle btn-link btn btn-sm"
+        >
+          Edit
+        </button>
+        <button
+          class="EditableTodo-delBtn btn-link btn btn-sm text-danger"
+        >
+          Del
+        </button>
+      </div>
+      <div
+        class="Todo"
+      >
+        <div>
+          <b>
+            test title
+          </b>
+           
+          <small>
+            (priority: 
+            1
+            )
+          </small>
+        </div>
+        <div>
+          <small>
+            test description
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -40,9 +40,9 @@ function TodoApp({ initialTodos }) {
       <div className="row">
 
         <div className="col-md-6">
-          (todos.length === 0) ?
+          {(todos.length === 0) ?
           <span className="text-muted">You have no todos.</span> :
-          <EditableTodoList update={update} remove={remove} todos={todos} />;
+          <EditableTodoList update={update} remove={remove} todos={todos} />}
         </div>
 
         <div className="col-md-6">
