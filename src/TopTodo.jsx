@@ -11,15 +11,21 @@ import Todo from "./Todo";
  */
 
 function TopTodo({todos}) {
+  const incomplete = todos.filter(t => !t.completed);
   // lowest-priority # is the highest priority
-  let top = todos.reduce(
-      (acc, cur) => Number(cur.priority) < Number(acc.priority) ? cur : acc, todos[0]);
+  let top = incomplete.reduce(
+      (acc, cur) => Number(cur.priority) < Number(acc.priority) ? cur : acc, incomplete[0]);
 
-  return <Todo
+  if (top) {
+    return <Todo
     id = {top.id}
     title = {top.title}
     description = {top.description}
-    priority = {top.priority} />;
+    priority = {top.priority} />
+  } else {
+    null;
+  }
+
 }
 
 export default TopTodo;

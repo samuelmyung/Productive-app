@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
-
+import Quote from "./Quote";
 import getRandomQuote from "./apiHelper";
 
 /** App for receiving a random inspirational quote.
@@ -32,3 +32,5 @@ return (
     </div>
 )
 }
+
+export default QuoteApp;

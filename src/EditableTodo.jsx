@@ -57,6 +57,8 @@ function EditableTodo({ todo, update, remove }) {
             title={todo.title}
             description={todo.description}
             priority={todo.priority}
+            completed={todo.completed}
+            update={update}
           />
         </div>}
 

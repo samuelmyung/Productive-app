@@ -17,7 +17,7 @@ const DEFAULT_TODO_DATA = {
 
 function TodoForm({ handleSave, initialFormData = DEFAULT_TODO_DATA }) {
   const [formData, setFormData] = useState(initialFormData);
-
+  const [titleIsValid, setTitleIsValid] = useState(true);
 
   /** Update form input. */
   function handleChange(evt) {
@@ -31,9 +31,15 @@ function TodoForm({ handleSave, initialFormData = DEFAULT_TODO_DATA }) {
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
+
+    const titleValidity = formData.title.length > 0;
+    setTitleIsValid(titleValidity);
+    if (!titleValidity) return;
+
     handleSave(formData);
     setFormData(initialFormData);
   }
+
 
   return (
     <form className="NewTodoForm" onSubmit={handleSubmit}>
@@ -49,6 +55,8 @@ function TodoForm({ handleSave, initialFormData = DEFAULT_TODO_DATA }) {
           aria-label="Title"
         />
       </div>
+
+      {!titleIsValid && <p style={{color: "red"}}>Title required!</p>}
 
       <div className="mb-3">
         <textarea

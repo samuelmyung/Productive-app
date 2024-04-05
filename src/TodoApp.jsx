@@ -4,6 +4,7 @@ import { v4 as uuid } from "uuid";
 import TopTodo from "./TopTodo";
 import EditableTodoList from "./EditableTodoList";
 import TodoForm from "./TodoForm";
+import { removeTodoFromLocal, saveTodoToLocal } from "./helpers";
 
 /** App for managing a todo list.
  *
@@ -20,8 +21,10 @@ function TodoApp({ initialTodos }) {
   const [todos, setTodos] = useState(initialTodos);
 
   /** add a new todo to list */
-  function create(newTodo) {
-    setTodos(todos => [...todos, { ...newTodo, id: uuid() }]);
+  function create(todo) {
+    const newTodo = { ...todo, id: uuid() };
+    setTodos(todos => [...todos, { ...todo, id: uuid() }]);
+    saveTodoToLocal(newTodo);
   }
 
   /** update a todo with updatedTodo */
@@ -32,6 +35,8 @@ function TodoApp({ initialTodos }) {
   /** delete a todo by id */
   function remove(id) {
     setTodos(todos => todos.filter(todo => todo.id !== id));
+    removeTodoFromLocal(id);
+
   }
 
 
