@@ -29,7 +29,7 @@ it("matches data-entered snapshot", function () {
 
 it("submitting form ", function () {
     const mockCreateTodo = vi.fn();
-    const { container } = render(<TodoForm handleSave={mockCreateTodo} />);
+    const { container, getAllByText } = render(<TodoForm handleSave={mockCreateTodo} />);
 
     const titleInput = container.querySelector('[name=title]');
     const descriptionInput = container.querySelector('[name=description]');
@@ -41,13 +41,12 @@ it("submitting form ", function () {
 
     expect(mockCreateTodo).toHaveBeenCalledTimes(0);
 
-    fireEvent.click(container.querySelector('.NewTodoForm-addBtn'));
+    const btn = getAllByText('Gø!')[0];
+
+    fireEvent.click(getAllByText('Gø!')[0]);
     expect(mockCreateTodo).toHaveBeenCalledTimes(1);
 
     expect(container.querySelectorAll("input[value='']")).toHaveLength(1);
-    expect(container.querySelectorAll("textarea")[0].value).toEqual('');
-
-    const options = container.querySelectorAll('option');
-    // expect(options[0].selected).toBeTruthy();
-    // expect(container.querySelectorAll("select")[0].value).toEqual('1');
+    expect(container.querySelector("textarea").value).toEqual('');
+    expect(container.querySelectorAll("select")[0].value).toEqual('3');
 });
