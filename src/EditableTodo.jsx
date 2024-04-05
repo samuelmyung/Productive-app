@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Todo from "./Todo";
 import TodoForm from "./TodoForm";
+import './EditableTodo.css'
 
 /** Show editable todo item.
  *
@@ -24,8 +25,9 @@ function EditableTodo({ todo, update, remove }) {
   }
 
   /** Call remove fn passed to this. */
-  function handleDelete() {
-    remove(todo.id);
+  function handleDelete(evt) {
+    evt.target.closest('.EditableTodo').classList.toggle('deletedTodo');
+    setTimeout(() => remove(todo.id), 600);
   }
 
   /** Edit form saved; toggle isEditing and update in ancestor. */
